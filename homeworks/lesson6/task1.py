@@ -21,7 +21,10 @@ ARRAY = [random.randint(MIN_ITEM, MAX_ITEM) for _ in range(SIZE)]
 VERSION_STR = 'Версия системы: MSWindows ' + str(sys.getwindowsversion().major)
 BIT_DEPTH_STR = 'Разрядность системы: ' + sys.platform
 PYTHON_STR = 'версия пайтона: ' + sys.winver
-ARRAY_WEIGHT = str(sys.getsizeof(ARRAY))
+aw = sys.getsizeof(ARRAY)
+for i in ARRAY:
+    aw += sys.getsizeof(i)
+ARRAY_WEIGHT = str(aw)
 
 
 # Исследующий инструмент
@@ -39,6 +42,8 @@ def two_less_1(mylist: list) -> tuple:
     report.append('Function "two_less_1" begin')
     report.append('Memory taken:')
     size = sys.getsizeof(mylist)
+    for j in mylist:
+        size += sys.getsizeof(j)
     report.append(f'list - {size}')
     minimal = float('inf')
     subminimal = float('inf')
@@ -70,6 +75,8 @@ def two_less_2(mylist: list) -> tuple:
     report.append('Function "two_less_2" begin')
     report.append('Memory taken:')
     size = sys.getsizeof(mylist)
+    for j in mylist:
+        size += sys.getsizeof(j)
     report.append(f'list - {size}')
     minimal, subminimal = (0, 1) if mylist[0] < mylist[1] else (1, 0)
     spam = sys.getsizeof(minimal) + sys.getsizeof(subminimal)
@@ -102,6 +109,8 @@ def two_less_3(mylist: list) -> tuple:
     report.append('Function "two_less_3" begin')
     report.append('Memory taken:')
     size = sys.getsizeof(mylist)
+    for j in mylist:
+        size += sys.getsizeof(j)
     report.append(f'list - {size}')
     minimal, subminimal = (mylist[0], mylist[1]) if mylist[0] < mylist[1] else (mylist[1], mylist[0])
     spam = sys.getsizeof(minimal) + sys.getsizeof(subminimal)
@@ -134,6 +143,8 @@ def two_less_4(mylist: list) -> tuple:
     report.append('Function "two_less_4" begin')
     report.append('Memory taken:')
     size = sys.getsizeof(mylist)
+    for j in mylist:
+        size += sys.getsizeof(j)
     report.append(f'list - {size}')
     minimal = None
     subminimal = None
@@ -188,44 +199,44 @@ print('\n'.join(report))
 # Пример выдачи в результате исполнения файла:
 #
 # "C:\Program Files\Python38\python.exe" C:/Users/jorian/PycharmProjects/algorithm/homeworks/lesson6/task1.py
-# FRAME: <frame at 0x0000000001E25BE0, file 'C:/Users/jorian/PycharmProjects/algorithm/homeworks/lesson6/task1.py',
-# line 37, code two_less_1>, EVENT: call, ARG: None.
-# FRAME: <frame at 0x0000000001E259F0, file 'C:/Users/jorian/PycharmProjects/algorithm/homeworks/lesson6/task1.py',
-# line 68, code two_less_2>, EVENT: call, ARG: None.
-# FRAME: <frame at 0x0000000001ED1610, file 'C:/Users/jorian/PycharmProjects/algorithm/homeworks/lesson6/task1.py',
-# line 100, code two_less_3>, EVENT: call, ARG: None.
-# FRAME: <frame at 0x0000000001ED1800, file 'C:/Users/jorian/PycharmProjects/algorithm/homeworks/lesson6/task1.py',
-# line 132, code two_less_4>, EVENT: call, ARG: None.
+# FRAME: <frame at 0x0000000001E05BE0, file 'C:/Users/jorian/PycharmProjects/algorithm/homeworks/lesson6/task1.py',
+# line 40, code two_less_1>, EVENT: call, ARG: None.
+# FRAME: <frame at 0x00000000026D2240, file 'C:/Users/jorian/PycharmProjects/algorithm/homeworks/lesson6/task1.py',
+# line 73, code two_less_2>, EVENT: call, ARG: None.
+# FRAME: <frame at 0x00000000026D2440, file 'C:/Users/jorian/PycharmProjects/algorithm/homeworks/lesson6/task1.py',
+# line 107, code two_less_3>, EVENT: call, ARG: None.
+# FRAME: <frame at 0x00000000026D2640, file 'C:/Users/jorian/PycharmProjects/algorithm/homeworks/lesson6/task1.py',
+# line 141, code two_less_4>, EVENT: call, ARG: None.
 # Исходные данные:
 # Версия системы: MSWindows 6. Разрядность системы: win32. версия пайтона: 3.8.
-# Размер памяти, занятый исходным списком: 9016.
+# Размер памяти, занятый исходным списком: 36996.
 # Function "two_less_1" begin
 # Memory taken:
-# list - 9016
+# list - 36996
 # two minimals begin - 48
 # cycle pointer - 28
 # two minimals end - 56
-# Function maximum memory size = 9100
+# Function maximum memory size = 37080
 # Function "two_less_2" begin
 # Memory taken:
-# list - 9016
+# list - 36996
 # two minimals begin - 52
 # cycle pointer - 28
 # two minimals end - 56
-# Function maximum memory size = 9100
+# Function maximum memory size = 37080
 # Function "two_less_3" begin
 # Memory taken:
-# list - 9016
+# list - 36996
 # two minimals begin - 56
 # cycle pointer - 28
 # two minimals end - 56
-# Function maximum memory size = 9100
+# Function maximum memory size = 37080
 # Function "two_less_4" begin
 # Memory taken:
-# list - 9016
+# list - 36996
 # two minimals begin - 32
 # cycle pointer - 28
 # two minimals end - 56
-# Function maximum memory size = 9100
+# Function maximum memory size = 37080
 #
 # Process finished with exit code 0
